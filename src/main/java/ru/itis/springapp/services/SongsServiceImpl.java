@@ -2,7 +2,7 @@ package ru.itis.springapp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.itis.springapp.models.Song;
+import ru.itis.springapp.dto.SongDto;
 import ru.itis.springapp.repositories.SongRepository;
 
 import java.util.List;
@@ -14,12 +14,12 @@ public class SongsServiceImpl implements SongsService {
     private SongRepository songRepository;
 
     @Override
-    public List<Song> getSongsByPrefix(String prefix) {
-        return songRepository.findAllByPrefix(prefix);
+    public List<SongDto> getSongsBySubstring(String substring) {
+        return SongDto.from(songRepository.findAllBySubstring(substring));
     }
 
     @Override
-    public List<Song> getAllSongs() {
-        return songRepository.findAll();
+    public List<SongDto> getAllSongs() {
+        return SongDto.from(songRepository.findAll());
     }
 }

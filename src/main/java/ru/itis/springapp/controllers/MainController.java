@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.itis.springapp.models.Song;
+import ru.itis.springapp.dto.SongDto;
 import ru.itis.springapp.services.StringParserService;
 import ru.itis.springapp.services.SongsService;
 
@@ -26,12 +26,12 @@ public class MainController {
 
     @PostMapping("/main_page")
     @ResponseBody
-    public ResponseEntity<List<Song>> search(@RequestBody String data) {
-        System.out.println(data);
-        String prefix = stringParserService.getValueOfParamFromString(data, "substring");
+    public ResponseEntity<List<SongDto>> search(@RequestBody String data) {
+        //System.out.println(data);
+        String substring = stringParserService.getValueOfParamFromString(data, "substring");
 
-        if (prefix != null) {
-            return ResponseEntity.ok(songsService.getSongsByPrefix(prefix));
+        if (substring != null) {
+            return ResponseEntity.ok(songsService.getSongsBySubstring(substring));
         } else {
             return ResponseEntity.ok(songsService.getAllSongs());
         }
