@@ -24,4 +24,7 @@ public class User {
     private String password;
     private String avatarUrl;
 
+    @Enumerated(value = EnumType.STRING)
+    private State state;
+    private String confirmCode;
 }
