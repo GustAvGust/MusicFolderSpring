@@ -1,7 +1,7 @@
 package ru.itis.springapp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.itis.springapp.dto.UserForm;
 import ru.itis.springapp.models.State;
@@ -16,8 +16,8 @@ public class SignUpServiceImpl implements SignUpService {
     @Autowired
     private UsersRepository usersRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private MailsService mailsService;
@@ -31,7 +31,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .avatarUrl("default")
                 .state(State.NOT_CONFIRMED)
                 .confirmCode(UUID.randomUUID().toString())
-//                .password(passwordEncoder.encode(form.getPassword()))
+                .password(passwordEncoder.encode(form.getPassword()))
                 .build();
 
         usersRepository.save(newUser);

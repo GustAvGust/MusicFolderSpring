@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.springapp.dto.SongDto;
-import ru.itis.springapp.models.Song;
 import ru.itis.springapp.services.PlaylistService;
 import ru.itis.springapp.services.StringParserService;
 import ru.itis.springapp.services.SongsService;

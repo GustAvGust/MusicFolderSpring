@@ -12,6 +12,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/signUp").permitAll()
-                .
+                .antMatchers("/**").authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/signIn")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/profile")
+                .failureUrl("/signIn?error")
+                .permitAll();
     }
 }
