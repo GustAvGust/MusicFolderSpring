@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -23,6 +24,9 @@ public class User {
     private String email;
     private String password;
     private String avatarUrl;
+
+    @OneToMany(mappedBy = "user")
+    private List<Playlist> playlists;
 
     @Enumerated(value = EnumType.STRING)
     private State state;

@@ -1,3 +1,14 @@
+POST http://localhost:8080/users/7/playlists
+Content-Type: application/json
+
+{
+  "name": "hhh"
+}
+
+###
 POST localhost:8080/main_page
 
 substring=aa
+
+###
+POST localhost:8080/main_page/users/7/playlists/1/songs/2

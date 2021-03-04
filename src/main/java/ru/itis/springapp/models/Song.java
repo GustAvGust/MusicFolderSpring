@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -20,4 +21,7 @@ public class Song {
 
     private String name;
     private String url;
+
+    @ManyToMany(mappedBy = "songs")
+    private List<Playlist> playlistsWithSong;
 }
