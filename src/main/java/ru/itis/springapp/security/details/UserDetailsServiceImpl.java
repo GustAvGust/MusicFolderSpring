@@ -10,7 +10,7 @@ import ru.itis.springapp.repositories.UsersRepository;
 
 import java.util.Optional;
 
-@Component
+@Component("customUserDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired

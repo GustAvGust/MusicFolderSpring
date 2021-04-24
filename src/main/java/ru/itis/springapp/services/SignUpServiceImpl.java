@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.itis.springapp.dto.UserForm;
+import ru.itis.springapp.models.Role;
 import ru.itis.springapp.models.State;
 import ru.itis.springapp.models.User;
 import ru.itis.springapp.repositories.UsersRepository;
@@ -26,10 +27,11 @@ public class SignUpServiceImpl implements SignUpService {
     public void signUp(UserForm form) {
         User newUser = User.builder()
                 .email(form.getEmail())
-                .firstName(form.getFirstName())
-                .lastName(form.getLastName())
+                .firstName(firstUpperCase(form.getFirstName()))
+                .lastName(firstUpperCase(form.getLastName()))
                 .avatarUrl("default")
                 .state(State.NOT_CONFIRMED)
+                .role(Role.USER)
                 .confirmCode(UUID.randomUUID().toString())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .build();
@@ -37,5 +39,13 @@ public class SignUpServiceImpl implements SignUpService {
         usersRepository.save(newUser);
 
         mailsService.sendEmailForConfirm(newUser.getEmail(), newUser.getConfirmCode());
+    }
+
+    private String firstUpperCase(String firstName) {
+        if (firstName == null) {
+            return "";
+        }
+        return firstName.substring(0, 1).toUpperCase() +
+                firstName.substring(1).toLowerCase();
     }
 }

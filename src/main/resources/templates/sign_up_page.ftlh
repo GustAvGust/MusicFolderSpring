@@ -45,6 +45,9 @@
             </div>
         </div>
     </form>
+    <div class="text-center">
+        <a href="/signIn">Sign In</a>
+    </div>
 </div>
 </body>
 </html>

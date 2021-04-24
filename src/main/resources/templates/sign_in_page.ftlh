@@ -30,6 +30,9 @@
             </div>
         </div>
     </form>
+    <div class="text-center">
+        <a href="/signUp">Sign Up</a>
+    </div>
 </div>
 
 

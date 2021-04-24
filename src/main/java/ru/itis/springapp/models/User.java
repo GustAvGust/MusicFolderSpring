@@ -24,6 +24,8 @@ public class User {
     private String email;
     private String password;
     private String avatarUrl;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "user")
     private List<Playlist> playlists;
