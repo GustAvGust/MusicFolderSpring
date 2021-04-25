@@ -18,7 +18,7 @@ function renderTable(teas, table) {
     table.html(innerHtml);
 }
 
-function showTeas(name, description) {
+function addAndShowTeas(name, description) {
     $.ajax({
             type: "POST",
             url: "/teas",
@@ -32,6 +32,19 @@ function showTeas(name, description) {
     );
 }
 
+// function showTeas(page) {
+//     $.ajax({
+//             type: "GET",
+//             url: "/teas?page=" + page,
+//             success: function (response) {
+//                 renderTable(response, $('#teas_table'));
+//             },
+//             dataType: "json",
+//             contentType: "application/json"
+//         }
+//     );
+// }
+
 addTeaButton.onclick = function () {
-    showTeas($('#nameOfTea').val(), $('#descriptionOfTea').val());
+    addAndShowTeas($('#nameOfTea').val(), $('#descriptionOfTea').val());
 };

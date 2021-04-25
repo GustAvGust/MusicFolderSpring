@@ -5,10 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.itis.springapp.dto.TeaDto;
 import ru.itis.springapp.dto.TeaForm;
 import ru.itis.springapp.models.User;
@@ -30,15 +27,13 @@ public class TeaController {
     @Autowired
     private StringParserService stringParserService;
 
-    @GetMapping("/teas")
-    public String index(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        model.addAttribute("teas", teasService.getAllTeasByUser(userDetails.getUser()));
-        return "teas_page";
-    }
+    private static final int DEFAULT_PAGE_AFTER_ADDING_TEA = 0;
 
-    @GetMapping("/teas/new")
-    public String newTea() {
-        return "tea_new_page";
+    @GetMapping("/teas")
+    public String index(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam Integer page) {
+        model.addAttribute("teas", teasService.getAllTeasByUser(userDetails.getUser(), page));
+        model.addAttribute("page_number", teasService.getTeaPagesNumberByUser(userDetails.getUser()));
+        return "teas_page";
     }
 
     @PostMapping("/teas")
@@ -59,6 +54,6 @@ public class TeaController {
                             .user(user)
                             .build();
         teasService.addNewTea(teaForm);
-        return ResponseEntity.ok(teasService.getAllTeasByUser(user));
+        return ResponseEntity.ok(teasService.getAllTeasByUser(user, DEFAULT_PAGE_AFTER_ADDING_TEA));
     }
 }

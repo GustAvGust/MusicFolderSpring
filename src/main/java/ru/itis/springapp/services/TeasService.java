@@ -7,6 +7,7 @@ import ru.itis.springapp.models.User;
 import java.util.List;
 
 public interface TeasService {
-    List<TeaDto> getAllTeasByUser(User user);
+    List<TeaDto> getAllTeasByUser(User user, Integer page);
     void addNewTea(TeaForm teaForm);
+    Integer getTeaPagesNumberByUser(User user);
 }

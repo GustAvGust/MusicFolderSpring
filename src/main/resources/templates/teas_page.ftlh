@@ -32,6 +32,12 @@
     </#list>
 </table>
 
+
+<#list 0..page_number as x>
+<#--    <button onclick="onclick=showTeas(${x})" value="${x}"/>-->
+    <a href="/teas?page=${x}">${x}</a>
+</#list>
+
 <script src="/js/teas_page_script.js"></script>
 </body>
 </html>
