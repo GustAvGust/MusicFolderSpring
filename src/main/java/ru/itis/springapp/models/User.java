@@ -23,11 +23,13 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private String avatarUrl;
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
     private String confirmCode;
+
+    @OneToOne
+    private FileInfo avatar;
 }

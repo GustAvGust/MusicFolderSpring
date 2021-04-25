@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.itis.springapp.dto.UserForm;
+import ru.itis.springapp.models.FileInfo;
 import ru.itis.springapp.models.Role;
 import ru.itis.springapp.models.State;
 import ru.itis.springapp.models.User;
+import ru.itis.springapp.repositories.FileInfoRepository;
 import ru.itis.springapp.repositories.UsersRepository;
 
 import java.util.UUID;
@@ -23,13 +25,16 @@ public class SignUpServiceImpl implements SignUpService {
     @Autowired
     private MailsService mailsService;
 
+    @Autowired
+    private FileInfoRepository fileInfoRepository;
+
     @Override
     public void signUp(UserForm form) {
         User newUser = User.builder()
                 .email(form.getEmail())
                 .firstName(firstUpperCase(form.getFirstName()))
                 .lastName(firstUpperCase(form.getLastName()))
-                .avatarUrl("default")
+                .avatar(fileInfoRepository.findById(Long.valueOf(1)).get())
                 .state(State.NOT_CONFIRMED)
                 .role(Role.USER)
                 .confirmCode(UUID.randomUUID().toString())

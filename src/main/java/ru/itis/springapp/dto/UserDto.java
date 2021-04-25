@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.springapp.models.FileInfo;
 import ru.itis.springapp.models.User;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserDto {
     private String email;
     private String firstName;
     private String lastName;
+    private FileInfo avatar;
 
     public static UserDto from(User user) {
         return UserDto.builder()
