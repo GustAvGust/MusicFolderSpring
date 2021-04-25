@@ -8,16 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-<table>
-    <tr>
-        <th>Playlist</th>
-    </tr>
-
-    <#list playlists as playlist>
-        <tr>
-            <td>${playlist.name}</td>
-        </tr>
-    </#list>
-</table>
+<h3>Add your's tea in collection</h3>
+<form method="post" action="/teas">
+    <input type="text" name="name" placeholder="Name of Tea">
+    <input type="text" name="description" placeholder="Description of Tea">
+    <input type="submit" name="addTeaButton" value="Add Tea">
+</form>
 </body>
 </html>

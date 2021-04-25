@@ -27,9 +27,6 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user")
-    private List<Playlist> playlists;
-
     @Enumerated(value = EnumType.STRING)
     private State state;
     private String confirmCode;
