@@ -28,6 +28,9 @@ public class SignUpServiceImpl implements SignUpService {
     @Autowired
     private FileInfoRepository fileInfoRepository;
 
+    @Autowired
+    private SmsService smsService;
+
     @Override
     public void signUp(UserForm form) {
         User newUser = User.builder()
@@ -44,6 +47,7 @@ public class SignUpServiceImpl implements SignUpService {
         usersRepository.save(newUser);
 
         mailsService.sendEmailForConfirm(newUser.getEmail(), newUser.getConfirmCode());
+        smsService.sendSms(form.getPhone(), "Welcome in our tea club");
     }
 
     private String firstUpperCase(String firstName) {

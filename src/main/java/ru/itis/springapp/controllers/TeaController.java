@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.itis.springapp.dto.TeaDto;
 import ru.itis.springapp.dto.TeaForm;
 import ru.itis.springapp.models.User;
@@ -34,6 +35,19 @@ public class TeaController {
         model.addAttribute("teas", teasService.getAllTeasByUser(userDetails.getUser(), page));
         model.addAttribute("page_number", teasService.getTeaPagesNumberByUser(userDetails.getUser()));
         return "teas_page";
+    }
+
+    @GetMapping("/teas/{tea-id}")
+    public String show(Model model, @PathVariable("tea-id") Long teaId) {
+        TeaDto teaDto = TeaDto.from(teasService.findTeaById(teaId));
+        model.addAttribute("tea", teaDto);
+        return "tea_page";
+    }
+
+    @PostMapping("/teas/{tea-id}")
+    public String update(@PathVariable("tea-id") Long teaId, @RequestParam("teaName") String teaName,  @RequestParam("teaDescription") String teaDescription) {
+        teasService.updateTea(teasService.findTeaById(teaId), TeaForm.builder().name(teaName).description(teaDescription).build());
+        return "redirect:/teas?page=0";
     }
 
     @PostMapping("/teas")

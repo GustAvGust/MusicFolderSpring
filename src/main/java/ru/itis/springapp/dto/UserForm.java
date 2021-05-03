@@ -16,4 +16,5 @@ public class UserForm {
     private String lastName;
     private String password;
     private FileInfo avatar;
+    private String phone;
 }

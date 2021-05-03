@@ -11,6 +11,7 @@ import ru.itis.springapp.models.User;
 import ru.itis.springapp.repositories.TeasRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class TeasServiceImpl implements TeasService {
@@ -38,5 +39,21 @@ public class TeasServiceImpl implements TeasService {
     @Override
     public Integer getTeaPagesNumberByUser(User user) {
         return Math.round(teasRepository.countAllByUser(user) / PAGE_SIZE);
+    }
+
+    @Override
+    public Tea findTeaById(Long id) {
+        return teasRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Tea not found"));
+    }
+
+    @Override
+    public void updateTea(Tea tea, TeaForm teaParams) {
+        if (teaParams.getName() != null) {
+            tea.setName(teaParams.getName());
+        }
+        if (teaParams.getDescription() != null) {
+            tea.setDescription(teaParams.getDescription());
+        }
+        teasRepository.save(tea);
     }
 }

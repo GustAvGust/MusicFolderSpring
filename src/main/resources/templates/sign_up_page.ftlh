@@ -35,6 +35,12 @@
 
         <div class="row justify-content-center">
             <div class="col-4">
+                <input class="form-control" type="text" name="phone" placeholder="Phone">
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-4">
                 <input class="form-control" type="password" name="password" placeholder="Password">
             </div>
         </div>
