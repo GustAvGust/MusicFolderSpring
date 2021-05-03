@@ -27,6 +27,7 @@ public class UserDto {
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
+                .avatar(user.getAvatar())
                 .build();
     }
 
