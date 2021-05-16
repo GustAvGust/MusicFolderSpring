@@ -38,7 +38,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .phone(form.getPhone())
                 .firstName(firstUpperCase(form.getFirstName()))
                 .lastName(firstUpperCase(form.getLastName()))
-                .avatar(fileInfoRepository.findById(Long.valueOf(1)).get())
+                .avatar(fileInfoRepository.findById(1L).get())
                 .state(State.NOT_CONFIRMED)
                 .role(Role.USER)
                 .confirmCode(UUID.randomUUID().toString())

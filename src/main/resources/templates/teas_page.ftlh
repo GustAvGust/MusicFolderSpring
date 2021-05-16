@@ -5,6 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -12,6 +14,7 @@
     <title>Document</title>
 </head>
 <body>
+<#include "_navbar.ftlh">
 <h3>Add your's tea in collection</h3>
 <div>
     <input type="text" id="nameOfTea" placeholder="Name of Tea">
@@ -26,7 +29,7 @@
     </tr>
     <#list teas as tea>
         <tr>
-            <td>${tea.name}</td>
+            <td><a href="/teas/${tea.id}">${tea.name}</a></td>
             <td>${tea.description}</td>
         </tr>
     </#list>

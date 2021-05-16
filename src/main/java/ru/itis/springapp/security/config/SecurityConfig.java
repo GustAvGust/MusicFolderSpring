@@ -40,6 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .defaultSuccessUrl("/profile")
                 .failureUrl("/signIn?error")
-                .permitAll();
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/signIn")
+                .deleteCookies("JSESSIONID");
     }
 }
