@@ -23,6 +23,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private String phone;
     @Enumerated(value = EnumType.STRING)
     private Role role;
 

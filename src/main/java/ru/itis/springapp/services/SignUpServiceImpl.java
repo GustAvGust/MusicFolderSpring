@@ -35,6 +35,7 @@ public class SignUpServiceImpl implements SignUpService {
     public void signUp(UserForm form) {
         User newUser = User.builder()
                 .email(form.getEmail())
+                .phone(form.getPhone())
                 .firstName(firstUpperCase(form.getFirstName()))
                 .lastName(firstUpperCase(form.getLastName()))
                 .avatar(fileInfoRepository.findById(Long.valueOf(1)).get())
