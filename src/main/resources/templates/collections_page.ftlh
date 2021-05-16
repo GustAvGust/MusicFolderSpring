@@ -15,11 +15,11 @@
 </head>
 <body>
 <#include "_navbar.ftlh">
-<h3>Add your's tea in collection</h3>
+<h3>Add your's collection in collection</h3>
 <div>
-    <input type="text" id="name" placeholder="Name of Tea">
-    <input type="text" id="description" placeholder="Description of Tea">
-    <input type="button" id="addTeaButton" value="Add Tea">
+    <input type="text" id="name" placeholder="Name of Collection">
+    <input type="text" id="description" placeholder="Description of Collection">
+    <input type="button" id="addCollectionButton" value="Add Collection">
 </div>
 
 <table id="table">
@@ -27,21 +27,21 @@
         <th>Name</th>
         <th>Description</th>
     </tr>
-    <#list teas as tea>
+    <#list collections as collection>
         <tr>
-            <td><a href="/teas/${tea.id}">${tea.name}</a></td>
-            <td>${tea.description}</td>
+            <td><a href="/collections/${collection.id}">${collection.name}</a></td>
+            <td>${collection.description}</td>
         </tr>
     </#list>
 </table>
 
 
 <#list 0..page_number as x>
-<#--    <button onclick="onclick=showTeas(${x})" value="${x}"/>-->
-    <a href="/teas?page=${x}">${x}</a>
+<#--    <button onclick="onclick=showCollections(${x})" value="${x}"/>-->
+    <a href="/collections?page=${x}">${x}</a>
 </#list>
 
 <script src="/js/render_table_page_script.js"></script>
-<script src="/js/teas_page_script.js"></script>
+<script src="/js/collections_page_script.js"></script>
 </body>
 </html>

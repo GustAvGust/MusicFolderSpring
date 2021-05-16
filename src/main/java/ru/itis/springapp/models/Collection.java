@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Tea {
+public class Collection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +25,6 @@ public class Tea {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(mappedBy = "teas")
-    List<Collection> collections;
+    @ManyToMany
+    List<Tea> teas;
 }

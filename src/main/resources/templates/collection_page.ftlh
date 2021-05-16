@@ -15,33 +15,10 @@
 </head>
 <body>
 <#include "_navbar.ftlh">
-<h3>Add your's tea in collection</h3>
-<div>
-    <input type="text" id="name" placeholder="Name of Tea">
-    <input type="text" id="description" placeholder="Description of Tea">
-    <input type="button" id="addTeaButton" value="Add Tea">
-</div>
-
-<table id="table">
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    <#list teas as tea>
-        <tr>
-            <td><a href="/teas/${tea.id}">${tea.name}</a></td>
-            <td>${tea.description}</td>
-        </tr>
-    </#list>
-</table>
-
-
-<#list 0..page_number as x>
-<#--    <button onclick="onclick=showTeas(${x})" value="${x}"/>-->
-    <a href="/teas?page=${x}">${x}</a>
-</#list>
-
-<script src="/js/render_table_page_script.js"></script>
-<script src="/js/teas_page_script.js"></script>
+    <form method="post" resource="/collections/${.vars['collection-id']}">
+        <input type="text" name="collectionName" value="${collection.getName()}">
+        <input type="text" name="collectionDescription" value="${collection.getDescription()}">
+        <input type="submit" value="Change Collection">
+    </form>
 </body>
 </html>
